@@ -1,7 +1,9 @@
-import React from 'react';
+import React from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import Header from "@/components/Header";
 import "./globals.css";
+import { Inter } from "next/font/google";
+import Providers from "@/components/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,14 +12,21 @@ export const metadata: Metadata = {
   description: "News App",
 };
 
-export default function RootLayout({
+export default function HomeLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <Providers>
+        <body
+          className={`${inter.className}  bg-gray-100 dark:bg-zinc-900 transition-all duration-700`}
+        >
+          <Header />
+          <div className="max-w-6xl mx-auto">{children}</div>
+        </body>
+      </Providers>
     </html>
   );
 }
